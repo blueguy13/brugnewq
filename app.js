@@ -1,3 +1,10 @@
+// Auto-redirect to home page on reload (if not already on home)
+const isHomePage = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+const navEntry = performance.getEntriesByType("navigation")[0];
+if (!isHomePage && navEntry?.type === "reload") {
+  window.location.href = "index.html";
+}
+
 import { minecraftPlans, vpsPlans, features } from './config.js';
 
 // Updated renderPlans function:
@@ -14,7 +21,7 @@ function renderPlans() {
         ${
           plan.comingSoon 
           ? '<button class="plan-button" disabled>More Coming Soon!</button>' 
-          : '<a href="https://discord.gg/QhU6dcP4Vp" class="plan-button" target="_blank" rel="noopener noreferrer">Go to Discord – Make Ticket (Cash App Only)</a>'
+          : '<a href="https://discord.gg/QhU6dcP4Vp" class="plan-button">Go to Discord – Make Ticket (Cash App Only)</a>'
         }
       </div>
     `).join('');
@@ -53,8 +60,6 @@ function renderPlans() {
   
   animateOnScroll();
   window.addEventListener('scroll', animateOnScroll);
-
-  // Removed the event listener that prompted for payment proof
 }
 
 document.addEventListener('DOMContentLoaded', () => {
