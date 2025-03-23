@@ -1,5 +1,6 @@
 import { minecraftPlans, vpsPlans, features } from './config.js';
 
+// Updated renderPlans function:
 function renderPlans() {
   const minecraftContainer = document.querySelector('#minecraft-plans');
   if (minecraftContainer) {
@@ -10,12 +11,15 @@ function renderPlans() {
         <ul class="features-list">
           ${plan.features.map(f => `<li>${f}</li>`).join('')}
         </ul>
-        ${plan.comingSoon 
-          ? '<button class="cta-button plan-button" disabled>More Coming Soon!</button>' 
-          : '<a href="https://discord.gg/QhU6dcP4Vp" class="cta-button plan-button" target="_blank" rel="noopener noreferrer">Go to Discord – Make Ticket (Cash App Only)</a>'}
+        ${
+          plan.comingSoon 
+          ? '<button class="plan-button" disabled>More Coming Soon!</button>' 
+          : '<a href="https://discord.gg/QhU6dcP4Vp" class="plan-button" target="_blank" rel="noopener noreferrer">Go to Discord – Make Ticket (Cash App Only)</a>'
+        }
       </div>
     `).join('');
   }
+
   const vpsContainer = document.querySelector('#vps-plans');
   if (vpsContainer) {
     vpsContainer.innerHTML = vpsPlans.map(plan => `
@@ -25,7 +29,7 @@ function renderPlans() {
         <ul class="features-list">
           ${plan.features.map(f => `<li>${f}</li>`).join('')}
         </ul>
-        <button class="cta-button plan-button" disabled>Coming Soon</button>
+        <button class="plan-button" disabled>Coming Soon</button>
       </div>
     `).join('');
   }
